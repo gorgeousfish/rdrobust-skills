@@ -128,7 +128,7 @@ Interpretation: Change in the slope (first derivative) of the regression functio
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `vce` | string | "nn" | Variance-covariance estimator: `nn` (nearest-neighbor), `hc0`, `hc1`, `hc2`, `hc3`, `cluster` |
+| `vce` | string | "nn" | Variance-covariance estimator: `nn` (nearest-neighbor), `hc0`, `hc1`, `hc2`, `hc3`; use `cluster` param for cluster-robust |
 | `cluster` | vector/varname | NULL/None | Cluster ID variable for cluster-robust inference |
 | `nnmatch` | integer | 3 | Minimum number of neighbors for nearest-neighbor variance estimator |
 | `level` | numeric | 95 | Confidence level (%) for interval construction |
@@ -251,13 +251,13 @@ rdrobust y x, c(0) covs(z1 z2)
 
 ```r
 # R
-out <- rdrobust(y, x, cluster = cluster_id, vce = "cluster", c = 0)
+out <- rdrobust(y, x, cluster = cluster_id, c = 0)
 summary(out)
 ```
 
 ```python
 # Python
-out = rdrobust(y, x, cluster = cluster_id, vce = "cluster", c = 0)
+out = rdrobust(y, x, cluster = cluster_id, c = 0)
 print(out)
 ```
 

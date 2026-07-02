@@ -97,8 +97,7 @@ x <- rdrobust_RDsenate$margin
 
 #### Python
 ```python
-from rdrobust import rdrobust
-from rdrobust.datasets import rdrobust_RDsenate
+from rdrobust import rdrobust, rdrobust_RDsenate
 
 data = rdrobust_RDsenate()
 y = data['vote'].values
@@ -310,8 +309,7 @@ cat("Total observations:", length(x), "\n")
 #### Python
 ```python
 import numpy as np
-from rdrobust import rdrobust, rdbwselect, rdplot
-from rdrobust.datasets import rdrobust_RDsenate
+from rdrobust import rdrobust, rdbwselect, rdplot, rdrobust_RDsenate
 
 # Load data
 data = rdrobust_RDsenate()
@@ -683,8 +681,7 @@ est_p2 <- rdrobust(y = y, x = x, c = 0, p = 2)
 
 #### Python
 ```python
-from rdrobust import rdrobust, rdplot
-from rdrobust.datasets import rdrobust_RDsenate
+from rdrobust import rdrobust, rdplot, rdrobust_RDsenate
 data = rdrobust_RDsenate()
 y = data['vote'].values
 x = data['margin'].values
@@ -762,7 +759,7 @@ rdrobust enrolled score, c(0)
 | 7 | **Ignoring mass points** in discrete running variables | Biased bandwidth selection; too few effective observations within the window; smoothness conditions locally violated | Use `masspoints = "adjust"` (default in recent versions); check with `masspoints = "check"` | Cattaneo, Idrobo, Titiunik (2020) |
 | 8 | **Not verifying covariate balance** at cutoff | Cannot indirectly assess continuity assumption; possible confounding if covariates jump at cutoff | Run rdrobust on each pre-treatment covariate as the outcome; all should have p > 0.05 | Cattaneo, Idrobo, Titiunik (2020), Ch. 4 |
 | 9 | **Using RD with a data-driven cutoff** | If the cutoff is chosen based on the data (e.g., a kink in the outcome), the design has no external validity and identification fails | The cutoff must be determined by institutional rules independent of the outcome data | Lee and Lemieux (2010), JEL |
-| 10 | **Clustering data without specifying cluster VCE** | Standard errors too small; over-rejection of null hypothesis; invalid inference | Use `vce = "cluster"` with cluster variable: R/Python `cluster = cl`; Stata `vce(cluster cl)` | CCT (2014), Section 4 |
+| 10 | **Clustering data without specifying cluster VCE** | Standard errors too small; over-rejection of null hypothesis; invalid inference | Specify cluster variable: R/Python `vce = "nn", cluster = cl`; Stata `vce(cluster cl)` | CCT (2014), Section 4 |
 
 ### Covariate Selection: Do and Don't
 
@@ -1100,7 +1097,7 @@ When observations within clusters (e.g., schools, districts, states) are correla
 # Cluster-robust variance estimation
 # cluster_var must be a numeric vector of cluster identifiers
 est_cl <- rdrobust(y = y, x = x, c = 0,
-                   vce = "cluster", cluster = cluster_var)
+                   vce = "nn", cluster = cluster_var)
 summary(est_cl)
 
 # For few clusters, rdrobust provides bias-reduced CRV corrections
@@ -1109,7 +1106,7 @@ summary(est_cl)
 
 #### Python
 ```python
-est_cl = rdrobust(y=y, x=x, c=0, vce="cluster", cluster=cluster_var)
+est_cl = rdrobust(y=y, x=x, c=0, vce="nn", cluster=cluster_var)
 print(est_cl)
 ```
 

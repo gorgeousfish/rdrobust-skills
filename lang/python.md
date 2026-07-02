@@ -36,7 +36,7 @@ from rdrobust import rdrobust, rdbwselect, rdplot, rdrobust_RDsenate
 | `rdrobust()` | `rdrobust.rdrobust` | Local-polynomial RD estimation with robust inference |
 | `rdbwselect()` | `rdrobust.rdbwselect` | Data-driven bandwidth selection |
 | `rdplot()` | `rdrobust.rdplot` | RD plots with binned scatter and polynomial fit |
-| `rdrobust_RDsenate()` | `rdrobust.datasets` | Load built-in Senate dataset |
+| `rdrobust_RDsenate()` | `rdrobust` (top-level) | Load built-in Senate dataset |
 
 ---
 
@@ -1019,7 +1019,7 @@ for outcome in outcomes:
 ### Built-in Dataset
 
 ```python
-from rdrobust.datasets import rdrobust_RDsenate
+from rdrobust import rdrobust_RDsenate
 
 # Load built-in senate data
 data = rdrobust_RDsenate()

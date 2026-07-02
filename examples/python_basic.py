@@ -17,7 +17,7 @@ from rdrobust import rdrobust, rdbwselect, rdplot
 # ============================================================
 # Step 2: Load Data
 # ============================================================
-from rdrobust.datasets import rdrobust_RDsenate
+from rdrobust import rdrobust_RDsenate
 
 data = rdrobust_RDsenate()
 y = data['vote'].values       # outcome: vote share next election

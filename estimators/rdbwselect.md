@@ -166,7 +166,7 @@ For \(p = 1\) and \(n = 500\): the CER bandwidth is approximately 27% narrower t
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `kernel` | string | "tri" | Kernel function: `tri` (triangular), `epa` (Epanechnikov), `uni` (uniform) |
-| `vce` | string | "nn" | Variance estimator: `nn`, `hc0`, `hc1`, `hc2`, `hc3`, `cluster` |
+| `vce` | string | "nn" | Variance estimator: `nn`, `hc0`, `hc1`, `hc2`, `hc3`; use `cluster` param for cluster-robust |
 | `cluster` | vector/varname | NULL/None | Cluster ID variable |
 | `nnmatch` | integer | 3 | Minimum neighbors for nearest-neighbor variance estimation |
 

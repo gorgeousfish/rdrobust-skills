@@ -195,7 +195,7 @@
 | Subsetting | `subset` argument (logical vector) | `subset` argument (boolean array) | `if/in` qualifier on command |
 | Cluster specification | Separate `cluster` argument | Separate `cluster` argument | Inside `vce(cluster clvar)` |
 | Data loading | `read.csv()` / `data()` | `pd.read_csv()` / built-in datasets | `use filename` |
-| Built-in dataset | `data(rdrobust_RDsenate)` | `from rdrobust.datasets import rdrobust_RDsenate` | `use rdrobust_senate.dta` |
+| Built-in dataset | `data(rdrobust_RDsenate)` | `from rdrobust import rdrobust_RDsenate` | `use rdrobust_senate.dta` |
 | Vector construction | `c(1, 2, 3)` | `np.array([1, 2, 3])` | N/A (variables are columns) |
 | Two-sided bandwidth | `h = c(12, 15)` | `h = [12, 15]` or `h = np.array([12, 15])` | `h(12 15)` |
 
@@ -263,8 +263,7 @@ summary(out)
 
 **Python:**
 ```python
-from rdrobust import rdrobust
-from rdrobust.datasets import rdrobust_RDsenate
+from rdrobust import rdrobust, rdrobust_RDsenate
 data = rdrobust_RDsenate()
 out = rdrobust(data['vote'].values, data['margin'].values, c=0)
 print(out)
